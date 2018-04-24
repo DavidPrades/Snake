@@ -33,5 +33,26 @@ public class Node  {
         return false;
     }
     
+    public void moveTo(DirectionType direction){
+        
+        switch(direction){
+            
+            case RIGHT:
+                
+                
+                break;
+            case LEFT:
+                
+                break;
+              case UP:
+                
+                break;
+            case DOWN:
+                
+                break;
+        }
+    
+    }
+    
     
 }

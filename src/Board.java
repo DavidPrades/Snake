@@ -16,37 +16,44 @@ import javax.swing.Timer;
  */
 public class Board extends JPanel implements ActionListener {
 
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-
-    }
-
     private int num_rows = 30;
     private int num_cols = 40;
+    private DirectionType direction;
     private int deltaTime;
     private int currentRow;
     private int currenCol;
 
-    
     private Timer timer;
     private Snake snake;
     private Food food;
-    
-    
-    public Board(){
+
+    public Board() {
         super();
-        
-       snake =  new Snake(new Node(num_rows/2, num_cols/2 ));
-        
-       
+        initValues();
+        snake = new Snake(new Node(num_rows / 2, num_cols / 2));
+        timer = new Timer(deltaTime, this);
+
     }
-     protected void paintComponent(Graphics g) {
+
+    public void initValues() {
+
+        deltaTime = 500;
+        direction= DirectionType.RIGHT;
+    }
+
+    //Game Main Loop
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+
+       snake.moveTo(direction);
+    }
+
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-       // drawBoard(g);
+        // drawBoard(g);
         if (snake != null) {
-            
-           snake.draw(g, squareWidth(), squareHeight());
-            
+
+            snake.draw(g, squareWidth(), squareHeight());
 
         }
         //drawBorder(g);
@@ -67,15 +74,13 @@ public class Board extends JPanel implements ActionListener {
     public void setNum_cols(int num_cols) {
         this.num_cols = num_cols;
     }
-    
-     private int squareWidth() {
+
+    private int squareWidth() {
         return getWidth() / num_cols;
     }
 
     private int squareHeight() {
         return getHeight() / num_rows;
     }
-    
-    
-    
+
 }

@@ -26,9 +26,9 @@ public class Snake {
     
     public void initSnake(Node start){
         
-        body.add(0, start);
-        body.add(1, start.decrementCol());
-        body.add(2, body.get(1).decrementCol());
+        body.add(new Node(start.row, start.col));
+        body.add(new Node(start.row, start.col-1));
+         body.add(new Node(start.row, start.col-2));
         
     }
     
@@ -36,16 +36,28 @@ public class Snake {
         
         return body;
     }
+    public void moveTo(DirectionType direction){
+        
+          for (Node part: body) {
+              part
+          }
     
     public void draw(Graphics g, int squareWidth, int squareHeight) {
         
+        int i =0;
         
         for (Node part: body) {
+            if(i==0){
+                Util.drawSquare(g, part, Color.red, squareWidth, squareHeight);
+            }else{
+                Util.drawSquare(g, part, Color.green, squareWidth, squareHeight);
+            }
             
-            Util.drawSquare(g, part, Color.yellow, squareWidth, squareHeight);
+            
            
-            
+            i++;
         }
+        System.out.println(i);
 
     }
 }
