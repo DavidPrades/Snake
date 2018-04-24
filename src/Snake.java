@@ -1,4 +1,6 @@
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 /*
@@ -22,8 +24,28 @@ public class Snake {
         initSnake(start);
     }
     
-    public void initSnake(){
+    public void initSnake(Node start){
+        
+        body.add(0, start);
+        body.add(1, start.decrementCol());
+        body.add(2, body.get(1).decrementCol());
+        
+    }
+    
+    public ArrayList<Node> getNodes(){
+        
+        return body;
+    }
+    
+    public void draw(Graphics g, int squareWidth, int squareHeight) {
         
         
+        for (Node part: body) {
+            
+            Util.drawSquare(g, part, Color.yellow, squareWidth, squareHeight);
+           
+            
+        }
+
     }
 }

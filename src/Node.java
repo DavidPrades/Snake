@@ -8,16 +8,29 @@
  *
  * @author alu20908719v
  */
-public class Node {
+public class Node  {
     
-    private int row;
-    private int col;
+    public int row;
+    public int col;
     
     public Node(int row, int col){
         
         this.row=row;
         this.col=col;
         
+    }
+    
+    public Node decrementCol(){
+        this.col--;
+        return new Node(row, col);
+    }
+
+    
+    public boolean isEqual(Node t) {
+        if(t.row ==  row && t.col == col){
+            return true;
+        }
+        return false;
     }
     
     
