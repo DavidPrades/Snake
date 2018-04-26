@@ -9,8 +9,7 @@
  * @author alu20908719v
  */
 public enum DirectionType {
-    
-   
+
     LEFT, RIGHT, UP, DOWN
-    
+
 }

@@ -9,13 +9,12 @@
  * @author alu20908719v
  */
 public class SpecialFood {
-    
+
     private int visibleTime;
-    
-    public SpecialFood(){
-        visibleTime=5;
-        
+
+    public SpecialFood() {
+        visibleTime = 5;
+
     }
-    
-    
+
 }

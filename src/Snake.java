@@ -15,10 +15,10 @@ import java.util.ArrayList;
 public class Snake {
 
     private ArrayList<Node> body;
-
+    private int increaseLength;
     public Snake(Node start) {
         body = new ArrayList<Node>();
-
+        increaseLength=0;
         initSnake(start);
     }
 
@@ -31,53 +31,65 @@ public class Snake {
         body.add(new Node(start.row, start.col - 4));
 
     }
+    public Node getHead(){
+        return body.get(0);
+    }
 
     public ArrayList<Node> getNodes() {
 
         return body;
     }
 
-    public void moveTo(DirectionType direction) {
-
+    public void moveTo(DirectionType direction, boolean increase) {
+            if(increase){
+                increaseLength+=4;
+            }
+        
         Node head = body.get(0);
         switch (direction) {
 
             case RIGHT:
                 body.add(0, new Node(head.row, head.col + 1));
-                body.remove(body.size() - 1);
+              
                 break;
             case LEFT:
                 body.add(0, new Node(head.row, head.col - 1));
-                body.remove(body.size() - 1);
+              
                 break;
             case UP:
                 body.add(0, new Node(head.row - 1, head.col));
-                body.remove(body.size() - 1);
+           
                 break;
             case DOWN:
                 body.add(0, new Node(head.row + 1, head.col));
-                body.remove(body.size() - 1);
+                
                 break;
         }
-    }
-    
+        if(increaseLength ==0){
+            
         
+          body.remove(body.size() - 1);
+        }else{
+            increaseLength--;
+        }
+    }
+   
 
     public Node nextMove(DirectionType direction) {
         Node head = body.get(0);
         switch (direction) {
 
             case RIGHT:
-                return new Node(head.row, head.col +1);
+                return new Node(head.row, head.col + 1);
 
             case LEFT:
-                return new Node(head.row, head.col-1);
+                return new Node(head.row, head.col - 1);
 
             case UP:
-                return new Node(head.row -1, head.col);
+                return new Node(head.row - 1, head.col);
 
             case DOWN:
-                return new Node(head.row+1, head.col);
+                return new Node(head.row + 1, head.col);
 
         }
         return null;
@@ -96,7 +108,6 @@ public class Snake {
 
             i++;
         }
-        
 
     }
 }

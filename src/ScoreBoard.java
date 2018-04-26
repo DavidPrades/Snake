@@ -16,7 +16,6 @@ public class ScoreBoard extends JLabel implements IncrementScorer {
     private int score;
     private int lines;
     private int level;
-   
 
     public ScoreBoard() {
         super();
@@ -27,35 +26,38 @@ public class ScoreBoard extends JLabel implements IncrementScorer {
 
     public void increment(int points) {
         score += points;
-        setText("Score: " + score+"  Lines: "+lines+ "  Level: "+level);
+        setText("Score: " + score + "  Lines: " + lines + "  Level: " + level);
     }
 
     public void reset() {
         score = 0;
         lines = 0;
         level = 1;
-       setText("Score: " + score+"  Lines: "+lines+ "  Level: "+level);
+        setText("Score: " + score + "  Lines: " + lines + "  Level: " + level);
     }
 
     @Override
     public int getScore() {
         return score;
     }
-    public int getLevel(){
+
+    public int getLevel() {
         return level;
     }
-    public void incrementLevel(){
+
+    public void incrementLevel() {
         level++;
-         setText("Score: " + score+"  Lines: "+lines+ "  Level: "+level);
+        setText("Score: " + score + "  Lines: " + lines + "  Level: " + level);
     }
-    public void incrementLines(){
+
+    public void incrementLines() {
         lines++;
-         setText("Score: " + score+"  Lines: "+lines+ "  Level: "+level);
+        setText("Score: " + score + "  Lines: " + lines + "  Level: " + level);
     }
 
     @Override
     public void paintFinalScore() {
-        setText("your final score is "+score);
+        setText("your final score is " + score);
         setForeground(Color.RED);
     }
 }

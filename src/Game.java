@@ -34,8 +34,6 @@ public class Game extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        scoreBoard2.setText("scoreBoard2");
         getContentPane().add(scoreBoard2, java.awt.BorderLayout.PAGE_END);
 
         javax.swing.GroupLayout board2Layout = new javax.swing.GroupLayout(board2);
@@ -46,7 +44,7 @@ public class Game extends javax.swing.JFrame {
         );
         board2Layout.setVerticalGroup(
             board2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         getContentPane().add(board2, java.awt.BorderLayout.CENTER);
@@ -73,6 +71,7 @@ public class Game extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         board2.initGame();
+        board2.setScorer(scoreBoard2);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

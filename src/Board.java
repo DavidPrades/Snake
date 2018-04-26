@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,8 @@ import javax.swing.Timer;
  * @author alu20908719v
  */
 public class Board extends JPanel implements ActionListener {
+
+    
 
     private class MyKeyAdapter extends KeyAdapter {
 
@@ -77,7 +80,7 @@ public class Board extends JPanel implements ActionListener {
             repaint();
         }
     }
-
+    private IncrementScorer scorerDelegate;
     private int num_rows = 30;
     private int num_cols = 40;
     private DirectionType direction;
@@ -90,6 +93,7 @@ public class Board extends JPanel implements ActionListener {
     private Snake snake;
     private Food food;
     private int foodGenerator;
+
     public Board() {
         super();
         initValues();
@@ -98,7 +102,10 @@ public class Board extends JPanel implements ActionListener {
         snake = null;
         MyKeyAdapter keyb = new MyKeyAdapter();
         addKeyListener(keyb);
-        currentFood=null;
+        currentFood = null;
+    }
+    public void setScorer(IncrementScorer scorer) {
+        this.scorerDelegate = scorer;
     }
 
     public void initValues() {
@@ -111,6 +118,7 @@ public class Board extends JPanel implements ActionListener {
     }
 
     public void initGame() {
+        foodGenerator = 0;
 
         snake = new Snake(new Node(num_rows / 2, num_cols / 2));
         isPlaying = true;
@@ -121,29 +129,39 @@ public class Board extends JPanel implements ActionListener {
     //Game Main Loop
     @Override
     public void actionPerformed(ActionEvent ae) {
-            generateFood();
+        generateFood();
+
         if (canMove(direction)) {
-            snake.moveTo(direction);
+            snake.moveTo(direction, hasEaten());
         } else {
             timer.stop();
         }
         repaint();
         Toolkit.getDefaultToolkit().sync();
     }
-    public void generateFood(){
-        
-        if(foodGenerator ==10){
-            
-      
-        currentFood = new Food(snake, num_rows, num_cols);
-        foodGenerator=0;
-    } else{
-            foodGenerator++;
+    
+
+
+    public boolean hasEaten() {
+
+        if (currentFood.getFoodPosition().isEqual(snake.getHead())) {
+            currentFood = null;
+            scorerDelegate.increment(12);
+            return true;
+        }
+        return false;
+    }
+
+    public void generateFood() {
+
+        if (currentFood == null) {
+            currentFood = new Food(snake, num_rows, num_cols);
         }
     }
 
     public void gameOver() {
         timer.stop();
+        scorerDelegate.getScore();
     }
 
     protected void paintComponent(Graphics g) {
@@ -154,8 +172,8 @@ public class Board extends JPanel implements ActionListener {
             snake.draw(g, squareWidth(), squareHeight());
 
         }
-        if(currentFood !=null){
-            currentFood.draw(g, WIDTH, HEIGHT);
+        if (currentFood != null) {
+            currentFood.draw(g, squareWidth() , squareHeight());
         }
         //drawBorder(g);
     }
@@ -164,12 +182,12 @@ public class Board extends JPanel implements ActionListener {
 
         Node nextMove = snake.nextMove(direction);
         ArrayList<Node> bodySnake = snake.getNodes();
-        for(Node body: bodySnake){
-            if(body.isEqual(nextMove)){
+        for (Node body : bodySnake) {
+            if (body.isEqual(nextMove)) {
                 return false;
             }
         }
-        if (nextMove.col < 0 || nextMove.col >=num_cols || nextMove.row < 0 || nextMove.row >= num_rows) {
+        if (nextMove.col < 0 || nextMove.col >= num_cols || nextMove.row < 0 || nextMove.row >= num_rows) {
 
             return false;
         }
@@ -198,6 +216,10 @@ public class Board extends JPanel implements ActionListener {
 
     private int squareHeight() {
         return getHeight() / num_rows;
+    }
+    public void drawBorder(Graphics g) {
+        g.setColor(Color.red);
+        g.drawRect(0, 0, num_cols * squareWidth(), num_rows * squareHeight());
     }
 
 }

@@ -6,52 +6,51 @@ import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author alu20908719v
  */
-public class Node  {
-    
+public class Node {
+
     public int row;
     public int col;
-    
-    public Node(int row, int col){
-        
-        this.row=row;
-        this.col=col;
-        
+
+    public Node(int row, int col) {
+
+        this.row = row;
+        this.col = col;
+
     }
-    
-    public Node decrementCol(){
+
+    public Node decrementCol() {
         this.col--;
         return new Node(row, col);
     }
-      public Node incrementCol(){
+
+    public Node incrementCol() {
         this.col++;
         return new Node(row, col);
     }
-       public Node decrementRow(){
+
+    public Node decrementRow() {
         this.row--;
         return new Node(row, col);
     }
-      public Node incrementRow(){
+
+    public Node incrementRow() {
         this.row++;
         return new Node(row, col);
     }
 
-    
     public boolean isEqual(Node t) {
-        if(t.row ==  row && t.col == col){
+        if (t.row == row && t.col == col) {
             return true;
         }
         return false;
     }
-    
-    public void moveTo(DirectionType direction){
-        
-        
+
+    public void moveTo(DirectionType direction) {
+
     }
-    
-    
+
 }
