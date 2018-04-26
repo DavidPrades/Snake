@@ -1,3 +1,6 @@
+
+import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -24,6 +27,18 @@ public class Node  {
         this.col--;
         return new Node(row, col);
     }
+      public Node incrementCol(){
+        this.col++;
+        return new Node(row, col);
+    }
+       public Node decrementRow(){
+        this.row--;
+        return new Node(row, col);
+    }
+      public Node incrementRow(){
+        this.row++;
+        return new Node(row, col);
+    }
 
     
     public boolean isEqual(Node t) {
@@ -35,23 +50,7 @@ public class Node  {
     
     public void moveTo(DirectionType direction){
         
-        switch(direction){
-            
-            case RIGHT:
-                
-                
-                break;
-            case LEFT:
-                
-                break;
-              case UP:
-                
-                break;
-            case DOWN:
-                
-                break;
-        }
-    
+        
     }
     
     
