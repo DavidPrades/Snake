@@ -14,26 +14,26 @@ import javax.swing.JLabel;
 public class ScoreBoard extends JLabel implements IncrementScorer {
 
     private int score;
-    private int lines;
+  
     private int level;
 
     public ScoreBoard() {
         super();
         score = 0;
-        lines = 0;
+       
         level = 1;
     }
 
     public void increment(int points) {
         score += points;
-        setText("Score: " + score + "  Lines: " + lines + "  Level: " + level);
+        setText("Score: " + score + "  Level: " + level);
     }
 
     public void reset() {
         score = 0;
-        lines = 0;
+       
         level = 1;
-        setText("Score: " + score + "  Lines: " + lines + "  Level: " + level);
+        setText("Score: " + score + " Level: " + level);
     }
 
     @Override
@@ -47,13 +47,10 @@ public class ScoreBoard extends JLabel implements IncrementScorer {
 
     public void incrementLevel() {
         level++;
-        setText("Score: " + score + "  Lines: " + lines + "  Level: " + level);
+        setText("Score: " + score + "  Level: " + level);
     }
 
-    public void incrementLines() {
-        lines++;
-        setText("Score: " + score + "  Lines: " + lines + "  Level: " + level);
-    }
+  
 
     @Override
     public void paintFinalScore() {

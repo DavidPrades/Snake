@@ -28,7 +28,7 @@ public class Snake {
         body.add(new Node(start.row, start.col - 1));
         body.add(new Node(start.row, start.col - 2));
         body.add(new Node(start.row, start.col - 3));
-        body.add(new Node(start.row, start.col - 4));
+ 
 
     }
     public Node getHead(){

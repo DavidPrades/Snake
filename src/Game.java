@@ -15,6 +15,7 @@ public class Game extends javax.swing.JFrame {
      */
     public Game() {
         initComponents();
+           board2.setScorer(scoreBoard2);
     }
 
     /**
@@ -71,7 +72,7 @@ public class Game extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         board2.initGame();
-        board2.setScorer(scoreBoard2);
+      
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

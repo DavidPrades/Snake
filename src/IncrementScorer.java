@@ -22,6 +22,6 @@ public interface IncrementScorer {
 
     public void incrementLevel();
 
-    public void incrementLines();
+
 
 }
